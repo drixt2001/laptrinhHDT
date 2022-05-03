@@ -19,17 +19,19 @@ public class Test2DArray {
     public static void main(String[] args) {
         int[][] matran;
         
-        Scanner sc = new Scanner(System.in);
-        matran = new int[5][7];
-        Random rd = new Random();
-        for(int i = 0;i<matran.length;i++){
-            for(int j = 0; j < matran[i].length;j++){
-                System.out.print("a["+i+","+j+"] = ");
-                String input = sc.nextLine();
-                int n = Integer.parseInt(input);
-                matran[i][j] = n;
-            }
-        }
+        matran = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
+//        Scanner sc = new Scanner(System.in);
+//        matran = new int[5][7];
+//        Random rd = new Random();
+//        for(int i = 0;i<matran.length;i++){
+//            for(int j = 0; j < matran[i].length;j++){
+////                matran[i][j] = rd.nextInt(100);
+////                System.out.print("a["+i+","+j+"] = ");
+////                String input = sc.nextLine();
+////                int n = Integer.parseInt(input);
+////                matran[i][j] = n;
+//            }
+//        }
         
         //Xuat gia tri cua ma tran ra man hinh
         for (int i=0;i<matran.length; i++){

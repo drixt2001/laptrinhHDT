@@ -2,22 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package lthdt.chuong3.dohoa.coffeeLogic;
+package lthdt.chuong3.coffeeLogic;
 
 /**
  *
  * @author thang
  */
-public class CoffeeShop {
+public class Product {
     private String name;
-    private String diachi;
+    private double price;
 
-    public CoffeeShop() {
+    public Product() {
     }
 
-    public CoffeeShop(String name, String diachi) {
+    public Product(String name, double price) {
         this.name = name;
-        this.diachi = diachi;
+        this.price = price;
     }
 
     public String getName() {
@@ -28,18 +28,19 @@ public class CoffeeShop {
         this.name = name;
     }
 
-    public String getDiachi() {
-        return diachi;
+    public double getPrice() {
+        return price;
     }
 
-    public void setDiachi(String diachi) {
-        this.diachi = diachi;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override
     public String toString() {
-        return "CoffeeShop{" + "name=" + name + ", diachi=" + diachi + '}';
+        return "Product{" + "name=" + name + ", price=" + price + '}';
     }
+    
     
     
 }

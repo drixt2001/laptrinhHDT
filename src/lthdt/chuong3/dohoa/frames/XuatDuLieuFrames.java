@@ -12,7 +12,8 @@ import java.util.Random;
  * @author thang
  */
 public class XuatDuLieuFrames extends javax.swing.JInternalFrame {
-
+    
+    int[] a;
     /**
      * Creates new form XuatDuLieuFrames
      */
@@ -30,7 +31,8 @@ public class XuatDuLieuFrames extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         panel = new javax.swing.JPanel();
-        btnDraw = new javax.swing.JButton();
+        btnSapXep = new javax.swing.JButton();
+        btnDraw1 = new javax.swing.JButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -48,10 +50,17 @@ public class XuatDuLieuFrames extends javax.swing.JInternalFrame {
             .addGap(0, 344, Short.MAX_VALUE)
         );
 
-        btnDraw.setText("Vẽ Mảng 1 Chiều");
-        btnDraw.addActionListener(new java.awt.event.ActionListener() {
+        btnSapXep.setText("Sắp Xếp Mảng 1 Chiều");
+        btnSapXep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDrawActionPerformed(evt);
+                btnSapXepActionPerformed(evt);
+            }
+        });
+
+        btnDraw1.setText("Vẽ Mảng 1 Chiều");
+        btnDraw1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDraw1ActionPerformed(evt);
             }
         });
 
@@ -59,31 +68,71 @@ public class XuatDuLieuFrames extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnDraw, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnDraw1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSapXep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDraw, panel});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDraw1, btnSapXep, panel});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDraw, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(btnDraw1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSapXep, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrawActionPerformed
-        
+    private void btnSapXepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSapXepActionPerformed
         Graphics2D gr = (Graphics2D) panel.getGraphics();
         int maxX = panel.getWidth();
         int maxY = panel.getHeight();
         int step = 5;
         int n = maxX/step;
-        int[] a = new int[n];
+        
+        int beginX = 0;
+        int beginX2 = 0;
+        
+        for(int i =0; i < n-1; i++){
+          for(int j = i+1;j<n;j++){
+              if(a[i] > a[j]){
+                  int temp = a[i];
+                  gr.clearRect(beginX, maxY - a[i], step, a[i]);
+                  a[i] = a[j];
+                  gr.drawRect(beginX, maxY - a[i], step, a[i]);
+                  
+                  beginX2 = j*step;
+                  gr.clearRect(beginX2, maxY - a[j], step, a[j]);
+                  
+                  a[j] = temp;
+                  gr.drawRect(beginX2, maxY - a[j], step, a[j]);
+              }
+          }
+          beginX += step;
+        }
+        
+    }//GEN-LAST:event_btnSapXepActionPerformed
+
+    private void btnDraw1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDraw1ActionPerformed
+//        
+        Graphics2D gr = (Graphics2D) panel.getGraphics();
+        int maxX = panel.getWidth();
+        int maxY = panel.getHeight();
+        int step = 5;
+        int n = maxX/step;
+        a = new int[n];
         Random rd = new Random();
         
         for(int i=0;i<n;i++){
@@ -99,11 +148,12 @@ public class XuatDuLieuFrames extends javax.swing.JInternalFrame {
             gr.drawRect(beginX, maxY - a[i], step, a[i]);
             beginX += step; 
         }
-    }//GEN-LAST:event_btnDrawActionPerformed
+    }//GEN-LAST:event_btnDraw1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDraw;
+    private javax.swing.JButton btnDraw1;
+    private javax.swing.JButton btnSapXep;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }

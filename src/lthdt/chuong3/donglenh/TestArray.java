@@ -45,6 +45,9 @@ public class TestArray {
         }
         System.out.println("Gia tri cua mang vua nhap la: "+Arrays.toString(c));
         
+        
+        Arrays.sort(c);
+        System.out.println("Gia tri cua mang vua sap xep la: "+Arrays.toString(c));
 //
 //        for(int i=0;i<n;i++){
 //            System.out.print("c["+i+"] = ");

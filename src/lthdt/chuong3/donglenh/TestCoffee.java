@@ -8,8 +8,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Locale;
-import lthdt.chuong3.dohoa.coffeeLogic.CoffeeShop;
-import lthdt.chuong3.dohoa.coffeeLogic.Manager;
+import lthdt.chuong3.coffeeLogic.CoffeeShop;
+import lthdt.chuong3.coffeeLogic.Manager;
 
 /**
  *

@@ -19,7 +19,7 @@ public class TestProductArrays {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Product[] sp = new Product[]{new Product("Dau goi Sunsilk", 12),
+        Product[] sp = new Product[]{new Product("Sunsilk", 12),
                                     new Product("Lifeboy", 5), new Product("Ban Phim", 100),
                                     new Product("Mi Tom", 1), new Product("Viet", 2)};
         
@@ -40,11 +40,20 @@ public class TestProductArrays {
 //        }
 
 
-        Arrays.sort(sp, new ProductCompByPrice());
-        System.out.println("Mang sap xep tang dan theo gia la: \n"+Arrays.toString(sp));
+//        Arrays.sort(sp, new ProductCompByPrice());
+//        System.out.println("Mang sap xep tang dan theo gia la: \n"+Arrays.toString(sp));
         
         Arrays.sort(sp, new ProductCompByName());
         System.out.println("Mang sap xep tang dan theo ten la: \n"+Arrays.toString(sp));
+        
+        
+        int index = Arrays.binarySearch(sp, new Product ("Sunsilk", 12), new ProductCompByName());
+        if (index<0){
+            System.out.println("Khong tim thay");
+        } else{
+            System.out.println("Phan tu thu " +index+ " chua gia tri can tim");
+            System.out.println(sp[index]);
+        }
     }
     
 }

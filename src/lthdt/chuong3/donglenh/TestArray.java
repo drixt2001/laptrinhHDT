@@ -48,6 +48,31 @@ public class TestArray {
         
         Arrays.sort(c);
         System.out.println("Gia tri cua mang vua sap xep la: "+Arrays.toString(c));
+        
+        //tim kiem
+        System.out.print("Nhap gia tri can tim kiem: ");
+        String tim = sc.nextLine();
+        int f = Integer.parseInt(tim);
+//        
+//        boolean flag = false;
+//        for(int i=0;i<c.length;i++){
+//            if(c[i]== f){
+//                System.out.println("Gia tri can tim kiem co trong mang tai vi tri: "+i);
+//                flag = true;
+//                break;
+//            }
+//        }
+//        if(!flag){
+//            System.out.println("Gia tri can tim kiem khong co trong mang");
+//        }
+            
+          //Tim kiem nhi phan
+          int index =  Arrays.binarySearch(c, f);
+          if(index < 0){
+              System.out.println("Gia tri can tim kiem khong co trong mang");
+          } else{
+              System.out.println("Gia tri can tim kiem co trong mang tai vi tri: "+index);
+          }
 //
 //        for(int i=0;i<n;i++){
 //            System.out.print("c["+i+"] = ");

@@ -4,7 +4,13 @@
  */
 package lthdt.chuong5.logic;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -78,5 +84,58 @@ public class FileAndDirecOperations {
         for(int i = 0; i<subcontent.length;i++){
             getContentRecurs(folder + File.separator + subcontent[i].getName());
         }
+    }
+    
+    //Thao tac 6: Doc file
+    public  String readTexFile(String fileName){
+        StringBuilder content = new StringBuilder();
+        
+        try {
+            //Mo file
+            FileReader fr = new FileReader(fileName);
+            //Dung bo dem
+            BufferedReader br = new BufferedReader(fr);
+            
+            String line = null;
+            while((line = br.readLine()) != null){
+                content.append(line);
+                content.append("\n");
+            }
+            
+            //Doc file
+            br.close();
+            fr.close();
+        } catch (FileNotFoundException ex) {
+            return "Khong tim thay file " + fileName;
+        } catch (IOException ex){
+            return "Khong the doc file " + fileName;
+        }
+        
+        return  content.toString();
+        
+    }
+    
+    //Thao tac 7: luu file
+    public boolean writeFile(String filename, String content){
+        boolean flag = true; //Luu thanh cong
+        
+       
+        try {
+            //Mo file
+            FileWriter fw = new FileWriter(filename);
+            //Su dung buffer
+            BufferedWriter bw = new BufferedWriter(fw);
+            //Ghi ra file
+            bw.write(content);
+            //Dong file
+            bw.flush();
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+            return false;
+        }
+        
+        return flag;
+        
     }
 }

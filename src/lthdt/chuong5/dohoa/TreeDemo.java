@@ -4,6 +4,10 @@
  */
 package lthdt.chuong5.dohoa;
 
+import java.io.File;
+import javax.swing.tree.DefaultMutableTreeNode;
+import lthdt.chuong5.logic.FileAndDirecOperations;
+import lthdt.chuong5.logic.FileTreeModel;
 import lthdt.chuong5.logic.TreeDemoModel;
 
 /**
@@ -15,11 +19,14 @@ public class TreeDemo extends javax.swing.JFrame {
     /**
      * Creates new form TreeDemo
      */
+    
+    FileTreeModel tree;
     public TreeDemo() {
         initComponents();
-        
-        TreeDemoModel model = new TreeDemoModel();
-        this.Jtree.setModel(model);
+        tree = new FileTreeModel("D:\\KPDL");
+//        TreeDemoModel model = new TreeDemoModel();
+//        this.Jtree.setModel(model);
+        this.Jtree.setModel(tree);
     }
 
     /**
@@ -40,6 +47,11 @@ public class TreeDemo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Su Dung Jtree");
 
+        Jtree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                JtreeValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(Jtree);
 
         jSplitPane1.setLeftComponent(jScrollPane1);
@@ -69,6 +81,16 @@ public class TreeDemo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JtreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_JtreeValueChanged
+        DefaultMutableTreeNode node  = (DefaultMutableTreeNode) Jtree.getLastSelectedPathComponent();
+        if ( node == null)
+            return;
+        File nodeInfo = (File) node.getUserObject();
+        FileAndDirecOperations fo = new FileAndDirecOperations();
+            File[] list = fo.getDirectoryContent(nodeInfo.getPath());
+            this.textArea.setText(fo.DisplayContent(list));
+    }//GEN-LAST:event_JtreeValueChanged
 
     /**
      * @param args the command line arguments
